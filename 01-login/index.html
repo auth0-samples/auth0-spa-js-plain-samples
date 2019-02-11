@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>SPA SDK Sample</title>
+  <link rel="stylesheet" type="text/css" href="css/main.css" />
+</head>
+
+<body>
+  <div>
+    <h1>SPA Authentication Sample</h1>
+    <p>Welcome to our page!</p>
+    <button disabled="true" id="btn-login" onclick="login()">Log in</button>
+    <button disabled="true" id="btn-logout" onclick="logout()">Log out</button>
+  </div>
+
+  <div class="hidden" id="gated-content">
+    <p>
+      You're seeing this content because you're currently <strong>logged in</strong>.
+    </p>
+    <label>
+      Access token: <textarea readonly="true" rows="1" id="ipt-access-token"></textarea>
+    </label>
+    <label>
+      User profile: <textarea readonly="true" rows="12" id="ipt-user-profile"></textarea>
+    </label>
+  </div>
+
+  <script src="https://unpkg.com/@auth0/auth0-login@0.0.1-alpha.15/dist/auth0-login.production.legacy.js"></script>
+  <script src="js/a0-variables.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>
