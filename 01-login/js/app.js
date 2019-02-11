@@ -49,21 +49,12 @@ let updateUI = async () => {
 
 // Will run when page finishes loading
 window.onload = async () => {
-  console.time("Checking Init")
   await auth0.init();
-  console.timeEnd("Checking Init")
 
   updateUI();
   let isAuthenticated = await auth0.isAuthenticated();
   if (isAuthenticated) {
     console.log("> User is authenticated");
-    try {
-      let accessToken = await auth0.getTokenSilently();
-      console.log("Access token is:",  accessToken);
-    } catch (err) {
-      console.log("Error obtaining tokens:", err);
-    }
-    //We can now make use of the token
   } else {
     console.log("> User not authenticated");
     const query = window.location.search;
