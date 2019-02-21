@@ -56,24 +56,6 @@ This article is based on the new SPA SDK available [here](https://github.com/aut
 Note this is making use of the version `0.0.1-alpha.15`. You might need to change this to a newer one when available.
 
 
-Alternatively, install the package locally with npm.
-
-```bash
-npm i @auth0/auth0-login --save
-```
-
-Then link the module and the application code in the `index.html` file by adding the following lines.
-
-```html
-<body>
-  <!-- add the lines below -->
-  <script src="node_modules/@auth0/auth0-login/dist/auth0-login.development.js"></script>
-  <script src="js/a0-variables.js"></script>
-  <script src="js/app.js"></script>
-</body>
-```
-
-
 ## Setup
 
 You may have noticed there is a reference to a `js/app.js` and a `js/a0-variables.js` file above. These are going to contain the application logic and the Auth0 client information respectively. Go ahead and create both files in the `js` folder before continuing.
@@ -121,7 +103,13 @@ window.onload = async () => {
 }
 ```
 
-**Checkpoint:** At this point you can start testing how it looks so far. For that, you could use a tool like [serve](https://github.com/zeit/serve). Install it globally and run the project on the port 3000:
+**Checkpoint:** At this point you can start testing how it looks so far. For that, you could use a tool like [serve](https://github.com/zeit/serve). If your `npm` version is `5.2.0` or newer you can take advantage of the `npx` command to run a package without installing it. Use the following command to run the project on the port 3000:
+
+```bash
+npx serve -p 3000
+```
+
+If you are running an older version of `npm`, install the package globally and run the project on the port 3000 like this:
 
 ```bash
 npm i serve -g
