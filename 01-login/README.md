@@ -139,8 +139,8 @@ window.onload = async () => {
   updateUI();
 }
 
-let updateUI = async () => {
-  let isAuthenticated = await auth0.isAuthenticated();
+const updateUI = async () => {
+  const isAuthenticated = await auth0.isAuthenticated();
   document.getElementById("btn-logout").disabled = !isAuthenticated;
   document.getElementById("btn-login").disabled = isAuthenticated;
 }
@@ -156,7 +156,7 @@ Authentication is achieved through a redirect to the Auth0 [Universal Login Page
 Start the authentication on the "Log in" button click by calling the `auth0.loginWithRedirect()` method passing a valid redirect URI. In this sample you will redirect the user back to the same page they are now. You can obtain that value from `window.location.origin` property. Abstract this logic into a `login()` method.
 
 ```js
-let login = async () => {
+const login = async () => {
   await auth0.loginWithRedirect({
     redirect_uri: window.location.origin
   });
@@ -175,7 +175,7 @@ This second scenario is the one you need to handle. In your `window.onload` meth
 window.onload = async () => {
   // code ommited for brevity
   updateUI();
-  let isAuthenticated = await auth0.isAuthenticated();
+  const isAuthenticated = await auth0.isAuthenticated();
   if (isAuthenticated) {
     // show the gated content
   } else {
@@ -205,7 +205,7 @@ You may have noticed that the "Log out" button is clickable when the user is aut
 Start the log out by calling the `auth0.logout()` method passing a valid return-to URI. In this sample you will return the user back to the same page they are now. You can obtain that value from `window.location.origin` property. Abstract this logic into a `logout()` method.
 
 ```js
-let logout = () => {
+const logout = () => {
   auth0.logout({
     returnTo: window.location.origin
   });
@@ -244,7 +244,7 @@ Now open the `app.js` file and modify the `updateUI()` function declared previou
 At the start of this article you have added a `css/main.css` file with the definition of the `hidden` class. This is used to give the `display=none` style property to the HTML elements you want to hide. Using the authenticated flag as shown below, add or remove this class to the elements you want to show or hide in the `updateUI()` function: 
 
 ```js
-let updateUI = async () => {
+const updateUI = async () => {
   // code ommited for brevity
   if (isAuthenticated){
     document.getElementById("gated-content").classList.remove('hidden');

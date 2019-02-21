@@ -6,7 +6,7 @@ const auth0 = new Auth0Login({
 
 //Declare helper functions
 
-let logout = () => {
+const logout = () => {
   try {
     console.log("Logging out");
     auth0.logout({
@@ -17,7 +17,7 @@ let logout = () => {
   }
 }
 
-let login = async () => {
+const login = async () => {
   try {
     console.log("Logging in");
     await auth0.loginWithRedirect({
@@ -28,7 +28,7 @@ let login = async () => {
   }
 }
 
-let updateUI = async () => {
+const updateUI = async () => {
   try {
     const isAuthenticated = await auth0.isAuthenticated();
     document.getElementById("btn-logout").disabled = !isAuthenticated;
@@ -52,7 +52,7 @@ window.onload = async () => {
   await auth0.init();
 
   updateUI();
-  let isAuthenticated = await auth0.isAuthenticated();
+  const isAuthenticated = await auth0.isAuthenticated();
   if (isAuthenticated) {
     console.log("> User is authenticated");
   } else {
