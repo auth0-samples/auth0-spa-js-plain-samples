@@ -4,12 +4,19 @@ let auth0 = null;
 /**
  * Starts the authentication flow
  */
-const login = async () => {
+const login = async (targetUrl) => {
   try {
-    console.log("Logging in");
-    await auth0.loginWithRedirect({
+    console.log("Logging in", targetUrl);
+
+    const options = {
       redirect_uri: window.location.origin
-    });
+    };
+
+    if (targetUrl) {
+      options.appState = { targetUrl };
+    }
+
+    await auth0.loginWithRedirect(options);
   } catch (err) {
     console.log("Log in failed", err);
   }
@@ -30,13 +37,18 @@ const logout = () => {
 };
 
 /**
+ * Retrieves the auth configuration from the server
+ */
+const fetchAuthConfig = () => fetch("/auth_config.json");
+
+/**
  * Initializes the Auth0 client
  */
 const configureClient = async () => {
-  const response = await fetch("/auth_config.json");
+  const response = await fetchAuthConfig();
   const config = await response.json();
 
-  auth0 = new Auth0Login({
+  auth0 = new Auth0({
     domain: config.domain,
     client_id: config.clientId
   });
@@ -47,14 +59,14 @@ const configureClient = async () => {
  * is prompted to log in
  * @param {*} fn The function to execute if the user is logged in
  */
-const requireAuth = async (fn) => {
+const requireAuth = async (fn, targetUrl) => {
   const isAuthenticated = await auth0.isAuthenticated();
 
   if (isAuthenticated) {
     return fn();
-  } else {
-    return login();
   }
+
+  return login(targetUrl);
 };
 
 // Will run when page finishes loading
@@ -99,7 +111,12 @@ window.onload = async () => {
   if (shouldParseResult) {
     console.log("> Parsing redirect");
     try {
-      await auth0.handleRedirectCallback();
+      const result = await auth0.handleRedirectCallback();
+
+      if (result.appState && result.appState.targetUrl) {
+        showContentFromUrl(result.appState.targetUrl);
+      }
+
       console.log("Logged in!");
     } catch (err) {
       console.log("Error parsing redirect:", err);

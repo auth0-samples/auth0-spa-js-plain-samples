@@ -1,7 +1,8 @@
 // URL mapping, from hash to a function that responds to that URL action
 const router = {
   "/": () => showContent("content-home"),
-  "/profile": () => requireAuth(() => showContent("content-profile")),
+  "/profile": () =>
+    requireAuth(() => showContent("content-profile"), "/profile"),
   "/login": () => login()
 };
 
