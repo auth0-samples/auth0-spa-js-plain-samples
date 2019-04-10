@@ -48,7 +48,7 @@ const configureClient = async () => {
   const response = await fetchAuthConfig();
   const config = await response.json();
 
-  auth0 = new Auth0({
+  auth0 = await createAuth0Client({
     domain: config.domain,
     client_id: config.clientId,
     audience: config.audience
@@ -99,7 +99,6 @@ const callApi = async () => {
 // Will run when page finishes loading
 window.onload = async () => {
   await configureClient();
-  await auth0.init();
 
   // If unable to parse the history hash, default to the root URL
   if (!showContentFromUrl(window.location.pathname)) {
