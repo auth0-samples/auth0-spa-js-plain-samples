@@ -88,7 +88,7 @@ Next, open the `auth_config.json` file and modify the data so that the audience 
 ```json
 {
   "domain": "{DOMAIN}",
-  "clientId": "{CLIENT_ID},
+  "clientId": "{CLIENT_ID}",
   "audience": "https://vanilla-js-spa"
 }
 ```
@@ -232,7 +232,7 @@ const configureClient = async () => {
   const response = await fetchAuthConfig();
   const config = await response.json();
 
-  auth0 = new Auth0({
+  auth0 = await createAuth0Client({
     domain: config.domain,
     client_id: config.clientId,
     audience: config.audience   // NEW - add the audience value

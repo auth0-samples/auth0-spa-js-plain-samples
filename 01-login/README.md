@@ -90,12 +90,12 @@ This article is based on the new SPA SDK available [here](https://github.com/aut
   <!-- other HTML -->
   
   <!-- add the lines below existing code -->
-  <script src="https://unpkg.com/@auth0/auth0-spa-js@0.0.1-alpha.16/dist/auth0-spa-js.production.js"></script>
+  <script src="https://unpkg.com/@auth0/auth0-spa-js@0.0.1-alpha.18/dist/auth0-spa-js.production.js"></script>
   <script src="/js/app.js"></script>
 </body>
 ```
 
-> **Note** this uses the version `0.0.1-alpha.16`. You might need to change this to a newer one when available.
+> **Note** this uses the version `0.0.1-alpha.18`. You might need to change this to a newer one when available.
 
 ### Setup
 
@@ -129,7 +129,7 @@ Access the [Auth0 dashboard](https://manage.auth0.com/#/applications) and go int
 
 ![Retrieving your Auth0 credentials](https://cdn.auth0.com/blog/quickstarts:create-app2.png)
 
-In the `auth_config.json` you need to place the information collected in the step (2) above in the following way:
+Create an `auth_config.json` in the root of the project. Place the information collected in the step (2) above in the following way:
 
 ```json
 {
@@ -246,23 +246,22 @@ const configureClient = async () => {
   const response = await fetchAuthConfig();
   const config = await response.json();
 
-  auth0 = new Auth0({
+  auth0 = await createAuth0Client({
     domain: config.domain,
     client_id: config.clientId
   });
 };
 ```
 
-As soon as the page loads you need to call this function as well as `auth0.init()`. This call will populate the in-memory cache with a valid access token and user profile information if someone has already authenticated before and that session is still valid.
+This call will also populate the in-memory cache with a valid access token and user profile information if someone has already authenticated before and that session is still valid.
 
-Add a handler for the `window.onload` function that will then make these calls to initialize the application:
+Add a handler for the `window.onload` function that will then make this call to initialize the application:
 
 ```js
 // public/js/app.js
 
 window.onload = async () => {
   await configureClient();
-  await auth0.init();
 }
 ```
 
@@ -281,7 +280,6 @@ Modify the previous `onload` handler to look like the following:
 
 window.onload = async () => {
   await configureClient();
-  await auth0.init();
 
   // NEW - update the UI state
   updateUI();
