@@ -10,9 +10,9 @@ List of available quickstarts
 
 ### External Sources
 
-- Vanilla JS Quickstart:  https://auth0.com/docs/quickstart/spa/vanillajs 
-- SPA Quickstart guidelines (Outdated): https://auth0team.atlassian.net/wiki/spaces/QU/pages/127044060/Quickstarts+implementation+guidelines+-+SPA
-- SPA Redirect vs Pop-up:  https://auth0team.atlassian.net/wiki/spaces/QU/pages/182062084/Pop+up+vs+Redirect+for+SPA+Quickstarts 
+- [Vanilla JS Quickstart](https://auth0.com/docs/quickstart/spa/vanillajs)
+- [SPA Quickstart guidelines (Outdated)](https://auth0team.atlassian.net/wiki/spaces/QU/pages/127044060/Quickstarts+implementation+guidelines+-+SPA)
+- [SPA Redirect vs Pop-up](https://auth0team.atlassian.net/wiki/spaces/QU/pages/182062084/Pop+up+vs+Redirect+for+SPA+Quickstarts)
 
 ## License
 This project follows the [MIT LICENSE](LICENSE)
