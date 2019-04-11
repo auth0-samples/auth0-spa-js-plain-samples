@@ -90,7 +90,7 @@ This article is based on the new SPA SDK available [here](https://github.com/aut
   <!-- other HTML -->
   
   <!-- add the lines below existing code -->
-  <script src="https://unpkg.com/@auth0/auth0-spa-js@0.0.1-alpha.18/dist/auth0-spa-js.production.js"></script>
+  <script src="https://cdn.auth0.com/js/auth0-spa-js/0.0.1-alpha.18/auth0-spa-js.production.js"></script>
   <script src="/js/app.js"></script>
 </body>
 ```
