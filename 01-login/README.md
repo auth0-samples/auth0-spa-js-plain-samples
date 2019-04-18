@@ -115,6 +115,10 @@ Your folder structure so far should look something like the following:
 
 ### Auth0 dashboard
 
+If you do not already have an Auth0 account, you can [create a free account here](https://auth0.com/signup).
+
+#### Configuring Auth0
+
 Access the [Auth0 dashboard](https://manage.auth0.com/#/applications) and go into the Applications section.
 
 ![Creating a new Auth0 application](https://cdn.auth0.com/blog/quickstarts:create-app.png)
